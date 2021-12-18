@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 25, 2021 at 10:03 AM
+-- Generation Time: Dec 18, 2021 at 05:54 PM
 -- Server version: 10.6.4-MariaDB-log
 -- PHP Version: 7.4.24
 
@@ -32,11 +32,18 @@ CREATE TABLE `item` (
   `item_category_id` int(11) NOT NULL,
   `item_storage_id` int(11) NOT NULL,
   `item_good_condition_ammount` int(11) NOT NULL,
-  `item_bad_condition_ammount` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `item_name` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `item_category_id`, `item_storage_id`, `item_good_condition_ammount`, `created_at`, `updated_at`, `item_name`) VALUES
+(2, 1, 1, 100, '2021-12-08 07:47:14', '2021-12-08 07:47:14', 'Hp'),
+(3, 1, 1, 90, '2021-12-08 07:47:30', '2021-12-08 07:47:29', 'Laptop');
 
 -- --------------------------------------------------------
 
@@ -50,6 +57,13 @@ CREATE TABLE `item_category` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_category`
+--
+
+INSERT INTO `item_category` (`id`, `item_category_name`, `created_at`, `updated_at`) VALUES
+(1, 'Elektronik', '2021-11-08 16:50:36', '2021-11-08 16:50:36');
 
 -- --------------------------------------------------------
 
@@ -81,6 +95,13 @@ CREATE TABLE `item_out` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `item_out`
+--
+
+INSERT INTO `item_out` (`id`, `item_id`, `item_out_ammount`, `description`, `created_at`, `updated_at`) VALUES
+(7, 3, 10, 'ddwwd', '2021-12-18 12:59:57', '2021-12-18 12:59:57');
+
 -- --------------------------------------------------------
 
 --
@@ -97,6 +118,13 @@ CREATE TABLE `last_activity` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `last_activity`
+--
+
+INSERT INTO `last_activity` (`id`, `item_id`, `ammount`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(2, 3, 10, 'ddwwd', 'BARANG_KELUAR', '2021-12-18 12:59:57', '2021-12-18 12:59:57');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +137,13 @@ CREATE TABLE `storage` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `storage`
+--
+
+INSERT INTO `storage` (`id`, `storage_name`, `created_at`, `updated_at`) VALUES
+(1, 'Gudang 1', '2021-11-08 16:50:47', '2021-11-08 16:50:47');
 
 --
 -- Indexes for dumped tables
@@ -164,13 +199,13 @@ ALTER TABLE `storage`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `item_category`
 --
 ALTER TABLE `item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `item_in`
@@ -182,19 +217,19 @@ ALTER TABLE `item_in`
 -- AUTO_INCREMENT for table `item_out`
 --
 ALTER TABLE `item_out`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `last_activity`
 --
 ALTER TABLE `last_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

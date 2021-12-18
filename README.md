@@ -1,8 +1,7 @@
 # Installasi
 
-1. Clone this project
-2. Open CMD / Terminal 
-3. Go to project directory
-4. type `mvn install`
-5. Copy file `.env.example` to `.env`
-6. Import database `sitori.sql` on the root of project
+1. Clone this project 
+2. Go to project directory
+3. Copy file `.env.example` to `.env`
+4. Import database `sitori.sql` on the root of project
+5. Edit .env to your database local config
