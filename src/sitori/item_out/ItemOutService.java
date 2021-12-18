@@ -128,7 +128,7 @@ public class ItemOutService extends Service<ItemOut> {
                             null, 
                             "Success insert item out",
                             "Success",
-                            JOptionPane.OK_OPTION
+                            JOptionPane.INFORMATION_MESSAGE
                         );
                     }
                 }

@@ -196,6 +196,8 @@ public class ItemOutView extends javax.swing.JPanel {
             int itemOutAmmount = Integer.parseInt(itemOut);
             int itemId = item.getId();
             this.insertItemOut(new ItemOut(itemId, itemOutAmmount, itemOutDescription));
+            ItemOutAmmountField.setText("");
+            ItemOutDescriptionField.setText("");
         }
     }//GEN-LAST:event_BtnSaveMouseClicked
 

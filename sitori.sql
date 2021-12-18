@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2021 at 05:54 PM
+-- Generation Time: Dec 18, 2021 at 06:14 PM
 -- Server version: 10.6.4-MariaDB-log
 -- PHP Version: 7.4.24
 
@@ -36,14 +36,6 @@ CREATE TABLE `item` (
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `item_name` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `item`
---
-
-INSERT INTO `item` (`id`, `item_category_id`, `item_storage_id`, `item_good_condition_ammount`, `created_at`, `updated_at`, `item_name`) VALUES
-(2, 1, 1, 100, '2021-12-08 07:47:14', '2021-12-08 07:47:14', 'Hp'),
-(3, 1, 1, 90, '2021-12-08 07:47:30', '2021-12-08 07:47:29', 'Laptop');
 
 -- --------------------------------------------------------
 
@@ -95,13 +87,6 @@ CREATE TABLE `item_out` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `item_out`
---
-
-INSERT INTO `item_out` (`id`, `item_id`, `item_out_ammount`, `description`, `created_at`, `updated_at`) VALUES
-(7, 3, 10, 'ddwwd', '2021-12-18 12:59:57', '2021-12-18 12:59:57');
-
 -- --------------------------------------------------------
 
 --
@@ -117,13 +102,6 @@ CREATE TABLE `last_activity` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `last_activity`
---
-
-INSERT INTO `last_activity` (`id`, `item_id`, `ammount`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(2, 3, 10, 'ddwwd', 'BARANG_KELUAR', '2021-12-18 12:59:57', '2021-12-18 12:59:57');
 
 -- --------------------------------------------------------
 
@@ -217,13 +195,13 @@ ALTER TABLE `item_in`
 -- AUTO_INCREMENT for table `item_out`
 --
 ALTER TABLE `item_out`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `last_activity`
 --
 ALTER TABLE `last_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `storage`
@@ -258,7 +236,7 @@ ALTER TABLE `item_out`
 -- Constraints for table `last_activity`
 --
 ALTER TABLE `last_activity`
-  ADD CONSTRAINT `FK_LAST_ACTIVITY_TO_ITEM` FOREIGN KEY (`id`) REFERENCES `item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_LAST_ACTIVITY_TO_ITEM` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
