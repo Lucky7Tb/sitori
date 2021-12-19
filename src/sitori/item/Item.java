@@ -8,19 +8,30 @@ public class Item {
     private int id;
     private String itemName;
     private int itemCategoryId;
+    private String itemCategoryName;
     private int itemStorageId;
+    private String itemStorageName;
     private int itemGoodConditionAmmount;
-    private String created_at;
-    private String updated_at;
+    private String createdAt;
+    private String updatedAt;
 
-    public Item(int id, String itemName, int itemCategoryId, int itemStorageId, int itemGoodConditionAmmount, String created_at, String updated_at) {
+    public Item(int id, String itemName, int itemCategoryId, String itemCategoryName, int itemStorageId, String itemStorageName, int itemGoodConditionAmmount, String createdAt, String updatedAt) {
         this.id = id;
+        this.itemName = itemName;
+        this.itemCategoryId = itemCategoryId;
+        this.itemCategoryName = itemCategoryName;
+        this.itemStorageId = itemStorageId;
+        this.itemStorageName = itemStorageName;
+        this.itemGoodConditionAmmount = itemGoodConditionAmmount;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Item(String itemName, int itemCategoryId, int itemStorageId, int itemGoodConditionAmmount) {
         this.itemName = itemName;
         this.itemCategoryId = itemCategoryId;
         this.itemStorageId = itemStorageId;
         this.itemGoodConditionAmmount = itemGoodConditionAmmount;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
     }
 
     public int getId() {
@@ -35,19 +46,29 @@ public class Item {
         return itemCategoryId;
     }
 
+    public String getItemCategoryName() {
+        return itemCategoryName;
+    }
+
     public int getItemStorageId() {
         return itemStorageId;
+    }
+
+    public String getItemStorageName() {
+        return itemStorageName;
     }
 
     public int getItemGoodConditionAmmount() {
         return itemGoodConditionAmmount;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
+
+    
 }

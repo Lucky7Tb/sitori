@@ -4,7 +4,6 @@ import sitori.item.Item;
 import sitori.db.DbService;
 import sitori.item.ItemService;
 import sitori.base.Service;
-import sitori.helper.DateHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -107,29 +106,30 @@ public class ItemOutService extends Service<ItemOut> {
                             JOptionPane.ERROR_MESSAGE
                         );
                         return;
-                    }
-                    query = "UPDATE `item` SET item_good_condition_ammount = item_good_condition_ammount - %d WHERE id = %d";
-                    query = String.format(
-                        query, 
-                        itemOut.getItemOutAmmount(), 
-                        itemOut.getItemId()
-                    );
-                    isError = DbService.query(query);
-                    if (isError) {
-                        JOptionPane.showMessageDialog(
-                            null, 
-                            "Db error",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE
-                        );
-                        return;
                     } else {
-                        JOptionPane.showMessageDialog(
-                            null, 
-                            "Success insert item out",
-                            "Success",
-                            JOptionPane.INFORMATION_MESSAGE
+                        query = "UPDATE `item` SET item_good_condition_ammount = item_good_condition_ammount - %d WHERE id = %d";
+                        query = String.format(
+                            query, 
+                            itemOut.getItemOutAmmount(), 
+                            itemOut.getItemId()
                         );
+                        isError = DbService.query(query);
+                        if (isError) {
+                            JOptionPane.showMessageDialog(
+                                null, 
+                                "Db error",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                            return;
+                        } else {
+                            JOptionPane.showMessageDialog(
+                                null, 
+                                "Success insert item out",
+                                "Success",
+                                JOptionPane.INFORMATION_MESSAGE
+                            );
+                        }
                     }
                 }
             }

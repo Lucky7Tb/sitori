@@ -1,19 +1,64 @@
 package sitori.item;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import sitori.storage.Storage;
+import sitori.storage.StorageService;
+import sitori.item_category.ItemCategory;
+import sitori.item_category.ItemCategoryService;
 
 /**
  *
  * @author lucky
  */
 public class ItemView extends javax.swing.JPanel {
-
+    private final StorageService storageService;
+    private final ItemCategoryService itemCategoryService;
+    private final ItemService itemService;
+    private ItemTableModel itemTableModel;
+    private ArrayList<Storage> listStorage;
+    private ArrayList<ItemCategory> listItemCategory;
+    private ArrayList<Item> listItem;
+    
     /**
      * Creates new form ItemView
      */
     public ItemView() {
         initComponents();
         this.setSize(800, 650);
+        
+        itemService = new ItemService();
+        storageService = new StorageService();
+        itemCategoryService = new ItemCategoryService();
+        getStorage();
+        getItemCategory();
+        getItem();
+    }
+    
+    private void getStorage() {
+        listStorage = storageService.getAll();
+        
+        for (Storage storage : listStorage){
+            StorageComboBox.addItem(storage.getStorageName());
+        }
+    }
+    
+    private void getItemCategory() {
+        listItemCategory = itemCategoryService.getAll();
+        for(ItemCategory itemCategory : listItemCategory) {
+            ItemCategoryComboBox.addItem(itemCategory.getItemCategoryName());
+        }
+    }
+    
+    private void getItem() {
+        listItem = itemService.getAll();
+        itemTableModel = new ItemTableModel(listItem);
+        ItemTable.setModel(itemTableModel);
+    }
+    
+    private void insertItem(Item item) {
+        itemService.insert(item);
+        getItem();
     }
 
     /**
@@ -32,7 +77,7 @@ public class ItemView extends javax.swing.JPanel {
         StorageComboBox = new javax.swing.JComboBox<>();
         ItemNameField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ItemTable = new javax.swing.JTable();
         BtnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(240, 240, 240));
@@ -70,9 +115,9 @@ public class ItemView extends javax.swing.JPanel {
         ItemNameField.setForeground(new java.awt.Color(51, 51, 51));
         ItemNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
 
-        jTable1.setBackground(new java.awt.Color(240, 240, 240));
-        jTable1.setFont(new java.awt.Font("Noto Sans", 0, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ItemTable.setBackground(new java.awt.Color(240, 240, 240));
+        ItemTable.setFont(new java.awt.Font("Noto Sans", 0, 15)); // NOI18N
+        ItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -83,7 +128,7 @@ public class ItemView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(ItemTable);
 
         BtnSave.setBackground(new java.awt.Color(240, 240, 240));
         BtnSave.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
@@ -141,6 +186,8 @@ public class ItemView extends javax.swing.JPanel {
 
     private void BtnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSaveMouseClicked
         String itemName = ItemNameField.getText();
+        int itemCategoryId = listItemCategory.get(ItemCategoryComboBox.getSelectedIndex()).getId();
+        int itemStorageId = listStorage.get(StorageComboBox.getSelectedIndex()).getId();
         
         if (itemName.equals("")) {
             JOptionPane.showMessageDialog(
@@ -150,6 +197,8 @@ public class ItemView extends javax.swing.JPanel {
                 JOptionPane.ERROR_MESSAGE
             );
         }
+        
+        insertItem(new Item(itemName, itemCategoryId, itemStorageId, 0));
     }//GEN-LAST:event_BtnSaveMouseClicked
 
 
@@ -157,11 +206,11 @@ public class ItemView extends javax.swing.JPanel {
     private javax.swing.JButton BtnSave;
     private javax.swing.JComboBox<String> ItemCategoryComboBox;
     private javax.swing.JTextField ItemNameField;
+    private javax.swing.JTable ItemTable;
     private javax.swing.JComboBox<String> StorageComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

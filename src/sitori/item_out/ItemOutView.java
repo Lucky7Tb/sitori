@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class ItemOutView extends javax.swing.JPanel {
 
-    private ItemOutService itemOutService;    
-    private ItemService itemService;
+    private final ItemOutService itemOutService;    
+    private final ItemService itemService;
     private ItemOutTableModel itemOutTableModel;
     private ArrayList<ItemOut> listItemOut;
     private ArrayList<Item> listItem;
@@ -26,10 +26,10 @@ public class ItemOutView extends javax.swing.JPanel {
     public ItemOutView() {
         initComponents();
         this.setSize(800, 650);
-        this.itemOutService = new ItemOutService();
-        this.itemService = new ItemService();
-        this.getItemOut();
-        this.getItem();
+        itemOutService = new ItemOutService();
+        itemService = new ItemService();
+        getItemOut();
+        getItem();
     }
     
     private void getItemOut() {
@@ -39,9 +39,9 @@ public class ItemOutView extends javax.swing.JPanel {
     }
     
     private void getItem() {
-        this.listItem = this.itemService.getAll();
+        listItem = itemService.getAll();
         
-        for(Item item : this.listItem) {
+        for(Item item : listItem) {
             ItemComboBox.addItem(item.getItemName());
         }
     }
@@ -184,7 +184,6 @@ public class ItemOutView extends javax.swing.JPanel {
         Item item = listItem.get(ItemComboBox.getSelectedIndex());
         String itemOut = ItemOutAmmountField.getText();
         String itemOutDescription = ItemOutDescriptionField.getText();
-        System.out.println(item.getItemName());
         if (itemOut.equals("") || itemOutDescription.equals("")) {
             JOptionPane.showMessageDialog(
                 this, 
