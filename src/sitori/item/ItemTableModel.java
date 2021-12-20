@@ -11,11 +11,11 @@ public class ItemTableModel extends AbstractTableModel{
     private final List<Item> itemList;
      
     private final String[] columnNames = new String[] {
-        "Id", "Nama barang", "Kategori", "Tempat penyimpanan", "Stok barang", "Tgl perubahan"
+        "Nama barang", "Kategori", "Tempat penyimpanan", "Stok barang", "Tgl perubahan"
     };
     
     private final Class[] columnClass = new Class[] {
-        Integer.class, String.class, String.class, String.class, String.class, Integer.class, String.class
+        String.class, String.class, String.class, String.class, Integer.class, String.class
     };
     
     public ItemTableModel(List<Item> itemList) {
@@ -50,16 +50,14 @@ public class ItemTableModel extends AbstractTableModel{
         
         switch(columnIndex) {
             case 0:
-                return row.getId();
-            case 1:
                 return row.getItemName();
-            case 2:
+            case 1:
                 return row.getItemCategoryName();
-            case 3:
+            case 2:
                 return row.getItemStorageName();
-            case 4:
+            case 3:
                 return row.getItemGoodConditionAmmount();
-            case 5:
+            case 4:
                 return row.getUpdatedAt();
             default:
                 return null;

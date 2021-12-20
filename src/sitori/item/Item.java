@@ -33,6 +33,12 @@ public class Item {
         this.itemStorageId = itemStorageId;
         this.itemGoodConditionAmmount = itemGoodConditionAmmount;
     }
+    
+    public Item(String itemName, int itemCategoryId, int itemStorageId) {
+        this.itemName = itemName;
+        this.itemCategoryId = itemCategoryId;
+        this.itemStorageId = itemStorageId;
+    }
 
     public int getId() {
         return id;

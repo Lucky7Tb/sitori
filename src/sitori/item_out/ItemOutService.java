@@ -125,8 +125,8 @@ public class ItemOutService extends Service<ItemOut> {
                         } else {
                             JOptionPane.showMessageDialog(
                                 null, 
-                                "Success insert item out",
-                                "Success",
+                                "Sukses menambah barang keluar",
+                                "Sukses",
                                 JOptionPane.INFORMATION_MESSAGE
                             );
                         }

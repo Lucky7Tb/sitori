@@ -11,7 +11,7 @@ public class ItemOutTableModel extends AbstractTableModel{
     private final List<ItemOut> itemOutList;
      
     private final String[] columnNames = new String[] {
-        "Id", "Nama barang", "Jumlah barang", "Deskripsi", "Tgl perubahan"
+        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl perubahan"
     };
     
     private final Class[] columnClass = new Class[] {
@@ -50,14 +50,12 @@ public class ItemOutTableModel extends AbstractTableModel{
         
         switch(columnIndex) {
             case 0:
-                return row.getId();
-            case 1:
                 return row.getItemName();
-            case 2:
+            case 1:
                 return row.getItemOutAmmount();
-            case 3:
+            case 2:
                 return row.getDescription();
-            case 4:
+            case 3:
                 return row.getUpdatedAt();
             default:
                 return null;
