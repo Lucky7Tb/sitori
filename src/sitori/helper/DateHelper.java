@@ -15,4 +15,9 @@ public class DateHelper {
         return dateFormater.format(date);
     }
     
+    public static String formatDate(Date date) {
+        SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormater.format(date);
+    }
+    
 }
