@@ -70,7 +70,6 @@ public class ItemOutView extends javax.swing.JPanel {
         ItemOutDescriptionField = new javax.swing.JTextField();
         BtnSave = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(240, 240, 240));
         setPreferredSize(new java.awt.Dimension(800, 650));
 
         itemOutTable.setAutoCreateRowSorter(true);
@@ -126,7 +125,6 @@ public class ItemOutView extends javax.swing.JPanel {
         ItemOutDescriptionField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
         ItemOutDescriptionField.setOpaque(false);
 
-        BtnSave.setBackground(new java.awt.Color(240, 240, 240));
         BtnSave.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         BtnSave.setForeground(new java.awt.Color(42, 110, 244));
         BtnSave.setText("Simpan");
@@ -155,7 +153,7 @@ public class ItemOutView extends javax.swing.JPanel {
                         .addComponent(ItemOutAmmountField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ItemComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

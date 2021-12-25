@@ -1,11 +1,13 @@
 package sitori.item_category;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lucky
  */
 public class ItemCategoryView extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form ItemCategoryView
      */
@@ -24,29 +26,121 @@ public class ItemCategoryView extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        kategori = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
+        reset = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbKategori = new javax.swing.JTable();
 
-        jLabel1.setText("ItemCategory");
+        jLabel1.setBackground(new java.awt.Color(42, 110, 244));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(42, 110, 244));
+        jLabel1.setText("Kategori Barang");
+
+        kategori.setForeground(new java.awt.Color(51, 51, 51));
+        kategori.setToolTipText("");
+        kategori.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+
+        save.setBackground(new java.awt.Color(255, 255, 255));
+        save.setForeground(new java.awt.Color(42, 110, 244));
+        save.setText("Save");
+        save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
+        reset.setBackground(new java.awt.Color(255, 255, 255));
+        reset.setForeground(new java.awt.Color(108, 117, 125));
+        reset.setText("Reset");
+        reset.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(108, 117, 125), 3, true));
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
+
+        delete.setBackground(new java.awt.Color(255, 255, 255));
+        delete.setForeground(new java.awt.Color(220, 53, 69));
+        delete.setText("Delete");
+        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 53, 69), 3, true));
+
+        tbKategori.setForeground(new java.awt.Color(204, 204, 204));
+        tbKategori.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Kategori Barang"
+            }
+        ));
+        tbKategori.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbKategori.setGridColor(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(tbKategori);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabel1)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(reset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delete))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {delete, reset, save});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reset)
+                    .addComponent(delete))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {delete, reset, save});
+
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        kategori.setText("");
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        
+    }//GEN-LAST:event_saveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField kategori;
+    private javax.swing.JButton reset;
+    private javax.swing.JButton save;
+    private javax.swing.JTable tbKategori;
     // End of variables declaration//GEN-END:variables
 }
