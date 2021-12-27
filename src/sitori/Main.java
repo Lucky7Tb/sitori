@@ -529,6 +529,8 @@ public class Main extends javax.swing.JFrame {
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
         mainView.setVisible(false);
+        
+        itemCategoryView.initData();
     }//GEN-LAST:event_ItemCategoryLabelMouseClicked
 
     private void ItemLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemLabelMouseClicked
@@ -611,6 +613,8 @@ public class Main extends javax.swing.JFrame {
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
         mainView.setVisible(false);
+        
+        itemInView.initData();
     }//GEN-LAST:event_ItemInLabelMouseClicked
 
     private void ItemOutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemOutLabelMouseClicked

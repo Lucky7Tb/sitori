@@ -3,6 +3,7 @@ package sitori.item_category;
 /**
  *
  * @author lucky
+ * @author gema
  */
 public class ItemCategory {
     private int id;
