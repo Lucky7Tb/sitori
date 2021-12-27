@@ -1,16 +1,63 @@
 package sitori.storage;
 
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+
 /**
  *
  * @author lucky
+ * @author audy
  */
 public class StorageView extends javax.swing.JPanel {
+    private int storageId = -1;
+    private final StorageService storageService;
+    private StorageTableModel storageTableModel;
+    private ArrayList<Storage> listStorage;
 
     /**
      * Creates new form StorageView
      */
     public StorageView() {
         initComponents();
+        this.setSize(800,650);
+        
+        storageService = new StorageService();
+        ResetBtn.setVisible(false);
+        DeleteBtn.setVisible(false);
+    }
+    
+    public void initData() {
+        getStorage();
+    }
+    
+    private void getStorage() {
+        listStorage = storageService.getAll();
+        storageTableModel = new StorageTableModel(listStorage);
+        StorageTable.setModel(storageTableModel);
+    }
+    
+    private void insertStorage(Storage storage){
+        storageService.insert(storage);
+        getStorage();
+    }
+    
+    private void updateStorage(int id, Storage storage) {
+        storageService.update(id, storage);
+        clearForm();
+        getStorage();
+    }
+    
+    private void deleteStorage(int id) {
+        storageService.delete(id);
+        clearForm();
+        getStorage();
+    }
+    
+    private void clearForm() {
+        StorageField.setText("");
+        ResetBtn.setVisible(false);
+        DeleteBtn.setVisible(false);
+        StorageTable.clearSelection();
     }
 
     /**
@@ -22,19 +69,160 @@ public class StorageView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        StorageField = new javax.swing.JTextField();
+        SaveBtn = new javax.swing.JButton();
+        ResetBtn = new javax.swing.JButton();
+        DeleteBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        StorageTable = new javax.swing.JTable();
+
+        setBackground(new java.awt.Color(240, 240, 240));
+        setMinimumSize(new java.awt.Dimension(800, 650));
+        setPreferredSize(new java.awt.Dimension(800, 650));
+
+        jLabel1.setBackground(new java.awt.Color(42, 110, 244));
+        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(42, 110, 244));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Tempat penyimpanan");
+
+        StorageField.setBackground(new java.awt.Color(240, 240, 240));
+        StorageField.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        StorageField.setForeground(new java.awt.Color(51, 51, 51));
+        StorageField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+
+        SaveBtn.setBackground(new java.awt.Color(240, 240, 240));
+        SaveBtn.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        SaveBtn.setForeground(new java.awt.Color(42, 110, 244));
+        SaveBtn.setText("Simpan");
+        SaveBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        SaveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveBtnMouseClicked(evt);
+            }
+        });
+
+        ResetBtn.setBackground(new java.awt.Color(240, 240, 240));
+        ResetBtn.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        ResetBtn.setForeground(new java.awt.Color(153, 153, 153));
+        ResetBtn.setText("Reset");
+        ResetBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 3, true));
+        ResetBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ResetBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ResetBtnMouseClicked(evt);
+            }
+        });
+
+        DeleteBtn.setBackground(new java.awt.Color(240, 240, 240));
+        DeleteBtn.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        DeleteBtn.setForeground(new java.awt.Color(255, 69, 40));
+        DeleteBtn.setText("Hapus");
+        DeleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 69, 40), 3, true));
+        DeleteBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseClicked(evt);
+            }
+        });
+
+        jScrollPane1.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
+
+        StorageTable.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
+        StorageTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tempat Penyimpanan"
+            }
+        ));
+        StorageTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StorageTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(StorageTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ResetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(StorageField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(StorageField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ResetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
+        String storageName = StorageField.getText();
+        
+        if(storageName.equals("")) {
+            JOptionPane.showMessageDialog(this, "All field are required", "Error", JOptionPane.ERROR_MESSAGE);
+        }else {
+            if(storageId == -1) {
+                insertStorage(new Storage(0, storageName));
+            } else {
+                updateStorage(storageId, new Storage(0, storageName));
+            }
+            
+            StorageField.setText("");
+        }
+    }//GEN-LAST:event_SaveBtnMouseClicked
+
+    private void ResetBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResetBtnMouseClicked
+        clearForm();
+        storageId = -1;
+    }//GEN-LAST:event_ResetBtnMouseClicked
+
+    private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
+        deleteStorage(storageId);
+    }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void StorageTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StorageTableMouseClicked
+        int index = StorageTable.getSelectedRow();
+        Storage storage = listStorage.get(index);
+        StorageField.setText(storage.getStorageName());
+        ResetBtn.setVisible(true);
+        DeleteBtn.setVisible(true);
+    }//GEN-LAST:event_StorageTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteBtn;
+    private javax.swing.JButton ResetBtn;
+    private javax.swing.JButton SaveBtn;
+    private javax.swing.JTextField StorageField;
+    private javax.swing.JTable StorageTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
