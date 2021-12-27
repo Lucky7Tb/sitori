@@ -62,6 +62,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         categoryNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
 
         save.setBackground(new java.awt.Color(255, 255, 255));
+        save.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         save.setForeground(new java.awt.Color(42, 110, 244));
         save.setText("Save");
         save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
@@ -77,6 +78,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         });
 
         reset.setBackground(new java.awt.Color(255, 255, 255));
+        reset.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         reset.setForeground(new java.awt.Color(108, 117, 125));
         reset.setText("Reset");
         reset.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(108, 117, 125), 3, true));
@@ -87,6 +89,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         });
 
         delete.setBackground(new java.awt.Color(255, 255, 255));
+        delete.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         delete.setForeground(new java.awt.Color(220, 53, 69));
         delete.setText("Delete");
         delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 53, 69), 3, true));
@@ -96,6 +99,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
             }
         });
 
+        CategoryTable.setAutoCreateRowSorter(true);
         CategoryTable.setBackground(new java.awt.Color(240, 240, 240));
         CategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,9 +222,9 @@ public class ItemCategoryView extends javax.swing.JPanel {
             );
         } else {
             if (categoryId == -1) {
-                insertCategory(new ItemCategory(0,categoryName));
+                insertCategory(new ItemCategory(0,categoryName, ""));
             } else {
-                updateCategory(categoryId, new ItemCategory(0,categoryName));
+                updateCategory(categoryId, new ItemCategory(0, categoryName, ""));
             }
 
             categoryNameField.setText("");

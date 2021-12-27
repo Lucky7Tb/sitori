@@ -8,10 +8,12 @@ package sitori.item_category;
 public class ItemCategory {
     private int id;
     private String itemCategoryName;
+    private String updatedAt;
 
-    public ItemCategory(int id, String itemCategoryName) {
+    public ItemCategory(int id, String itemCategoryName, String updatedAt) {
         this.id = id;
         this.itemCategoryName = itemCategoryName;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -21,4 +23,9 @@ public class ItemCategory {
     public String getItemCategoryName() {
         return itemCategoryName;
     }
+    
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
 }

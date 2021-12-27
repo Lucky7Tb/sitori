@@ -15,11 +15,11 @@ public class ItemCategoryTableModel extends AbstractTableModel {
     private final List<ItemCategory> categoryList;
     
     private final String[] columnNames = new String[] {
-        "ID", "Kategori Barang"
+        "Kategori Barang", "Tgl berubahan"
     };
     
     private final Class[] columnClass = new Class[] {
-        Integer.class, String.class
+        String.class, String.class
     };
     
     public ItemCategoryTableModel(List<ItemCategory> itemList) {
@@ -54,9 +54,9 @@ public class ItemCategoryTableModel extends AbstractTableModel {
         
         switch(columnIndex) {
             case 0:
-                return row.getId();
-            case 1:
                 return row.getItemCategoryName();
+            case 1:
+                return row.getUpdatedAt();
             default:
                 return null;
         }

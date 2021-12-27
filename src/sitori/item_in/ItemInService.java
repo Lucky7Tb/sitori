@@ -123,7 +123,7 @@ public class ItemInService extends Service<ItemIn> {
                         } else {
                             JOptionPane.showMessageDialog(
                                 null, 
-                                "Sukses menambah barang keluar",
+                                "Sukses menambah barang masuk",
                                 "Sukses",
                                 JOptionPane.INFORMATION_MESSAGE
                             );

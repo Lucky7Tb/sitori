@@ -89,12 +89,15 @@ public class ItemInView extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setBackground(new java.awt.Color(42, 110, 244));
+        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(42, 110, 244));
         jLabel1.setText("Barang");
 
+        jLabel2.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(42, 110, 244));
         jLabel2.setText("Jumlah");
 
+        jLabel3.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(42, 110, 244));
         jLabel3.setText("Keterangan");
 
@@ -111,6 +114,7 @@ public class ItemInView extends javax.swing.JPanel {
         ItemInDescriptionField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
 
         BtnSave.setBackground(new java.awt.Color(240, 240, 240));
+        BtnSave.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         BtnSave.setForeground(new java.awt.Color(42, 110, 244));
         BtnSave.setText("Simpan");
         BtnSave.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
@@ -120,6 +124,8 @@ public class ItemInView extends javax.swing.JPanel {
             }
         });
 
+        itemInTable.setAutoCreateRowSorter(true);
+        itemInTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         itemInTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -139,14 +145,13 @@ public class ItemInView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1))
+                    .addComponent(jLabel2)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ItemInDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ItemComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 498, Short.MAX_VALUE)
-                        .addComponent(ItemInAmmountField, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(ItemInAmmountField, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel1))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,9 +171,9 @@ public class ItemInView extends javax.swing.JPanel {
                 .addComponent(ItemInDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

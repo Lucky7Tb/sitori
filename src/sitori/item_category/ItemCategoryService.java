@@ -26,7 +26,8 @@ public class ItemCategoryService extends Service<ItemCategory> {
                 listItemCategory.add(
                     new ItemCategory(
                         result.getInt("id"),
-                        result.getString("item_category_name")
+                        result.getString("item_category_name"),
+                        result.getString("updated_at")
                     )
                 );
             }
@@ -52,7 +53,9 @@ public class ItemCategoryService extends Service<ItemCategory> {
             while(result.next()) {
                 return new ItemCategory(
                     result.getInt("id"),
-                        result.getString("item_category_name")
+                    result.getString("item_category_name"),
+                    result.getString("updated_at")
+
                 );
             }
         } catch (SQLException e) {

@@ -71,7 +71,7 @@ public class StorageView extends javax.swing.JPanel {
         SaveBtn = new javax.swing.JButton();
         ResetBtn = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         StorageTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(240, 240, 240));
@@ -125,23 +125,19 @@ public class StorageView extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
-
-        StorageTable.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
+        StorageTable.setAutoCreateRowSorter(true);
         StorageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Tempat Penyimpanan"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        StorageTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                StorageTableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(StorageTable);
+        jScrollPane2.setViewportView(StorageTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -156,10 +152,10 @@ public class StorageView extends javax.swing.JPanel {
                         .addComponent(ResetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(StorageField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                    .addComponent(StorageField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,9 +169,9 @@ public class StorageView extends javax.swing.JPanel {
                     .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ResetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -204,15 +200,6 @@ public class StorageView extends javax.swing.JPanel {
         deleteStorage(storageId);
     }//GEN-LAST:event_DeleteBtnMouseClicked
 
-    private void StorageTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StorageTableMouseClicked
-        int index = StorageTable.getSelectedRow();
-        Storage storage = listStorage.get(index);
-        storageId = storage.getId();
-        StorageField.setText(storage.getStorageName());
-        ResetBtn.setVisible(true);
-        DeleteBtn.setVisible(true);
-    }//GEN-LAST:event_StorageTableMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteBtn;
@@ -221,6 +208,6 @@ public class StorageView extends javax.swing.JPanel {
     private javax.swing.JTextField StorageField;
     private javax.swing.JTable StorageTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

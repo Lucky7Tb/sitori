@@ -80,6 +80,7 @@ public class LastActivityView extends javax.swing.JPanel {
             }
         });
 
+        LastActivityTable.setAutoCreateRowSorter(true);
         LastActivityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

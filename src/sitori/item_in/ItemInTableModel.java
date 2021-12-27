@@ -15,7 +15,7 @@ public class ItemInTableModel extends AbstractTableModel{
     private final List<ItemIn> itemInList;
      
     private final String[] columnNames = new String[] {
-        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl perubahan"
+        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl barang masuk"
     };
     
     private final Class[] columnClass = new Class[] {
@@ -60,7 +60,7 @@ public class ItemInTableModel extends AbstractTableModel{
             case 2:
                 return row.getDescription();
             case 3:
-                return row.getUpdatedAt();
+                return row.getCreatedAt();
             default:
                 return null;
         }

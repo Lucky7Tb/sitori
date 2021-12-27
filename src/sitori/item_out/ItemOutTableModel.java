@@ -11,11 +11,11 @@ public class ItemOutTableModel extends AbstractTableModel{
     private final List<ItemOut> itemOutList;
      
     private final String[] columnNames = new String[] {
-        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl perubahan"
+        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl barang keluar"
     };
     
     private final Class[] columnClass = new Class[] {
-        Integer.class, String.class, Integer.class, String.class, String.class
+        String.class, Integer.class, Integer.class, String.class, String.class
     };
     
     public ItemOutTableModel(List<ItemOut> itemOutList) {
@@ -56,7 +56,7 @@ public class ItemOutTableModel extends AbstractTableModel{
             case 2:
                 return row.getDescription();
             case 3:
-                return row.getUpdatedAt();
+                return row.getCreatedAt();
             default:
                 return null;
         }
