@@ -191,14 +191,14 @@ public class ItemOutView extends javax.swing.JPanel {
         if (itemOut.equals("") || itemOutDescription.equals("")) {
             JOptionPane.showMessageDialog(
                 this, 
-                "All field are required", 
+                "Semua field harus diisi", 
                 "Error", 
                 JOptionPane.ERROR_MESSAGE
             );
         } else {
             int itemOutAmmount = Integer.parseInt(itemOut);
             int itemId = item.getId();
-            this.insertItemOut(new ItemOut(itemId, itemOutAmmount, itemOutDescription));
+            insertItemOut(new ItemOut(itemId, itemOutAmmount, itemOutDescription));
             ItemOutAmmountField.setText("");
             ItemOutDescriptionField.setText("");
         }

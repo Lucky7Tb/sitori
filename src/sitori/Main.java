@@ -1,5 +1,7 @@
 package sitori;
 
+import sitori.auth.Admin;
+import sitori.auth.Login;
 import javax.swing.ImageIcon;
 import sitori.storage.StorageView;
 import sitori.item_category.ItemCategoryView;
@@ -9,7 +11,6 @@ import sitori.item_out.ItemOutView;
 import sitori.last_activity.LastActivityView;
 import java.awt.Color;
 import java.awt.Font;
-
 /**
  *
  * @author lucky
@@ -337,10 +338,9 @@ public class Main extends javax.swing.JFrame {
         LastActivityMenuBtn.setLayout(LastActivityMenuBtnLayout);
         LastActivityMenuBtnLayout.setHorizontalGroup(
             LastActivityMenuBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LastActivityMenuBtnLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LastActivityMenuBtnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LastActivityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(LastActivityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
         );
         LastActivityMenuBtnLayout.setVerticalGroup(
             LastActivityMenuBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,33 +363,37 @@ public class Main extends javax.swing.JFrame {
         LogoContainerLayout.setHorizontalGroup(
             LogoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoContainerLayout.createSequentialGroup()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         LogoContainerLayout.setVerticalGroup(
             LogoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoContainerLayout.createSequentialGroup()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SidePanelLayout = new javax.swing.GroupLayout(SidePanel);
         SidePanel.setLayout(SidePanelLayout);
         SidePanelLayout.setHorizontalGroup(
             SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ItemCategoryMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(ItemMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(ItemOutMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(LastActivityMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(StorageMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(ItemInMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-            .addComponent(LogoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ItemCategoryMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(ItemMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(ItemOutMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(StorageMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(ItemInMenuBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addGroup(SidePanelLayout.createSequentialGroup()
+                .addComponent(LogoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(259, 259, 259))
+            .addGroup(SidePanelLayout.createSequentialGroup()
+                .addComponent(LastActivityMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         SidePanelLayout.setVerticalGroup(
             SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SidePanelLayout.createSequentialGroup()
                 .addComponent(LogoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(42, 42, 42)
                 .addComponent(StorageMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ItemCategoryMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,7 +405,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(ItemOutMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(LastActivityMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         ContentPanel.setBackground(new java.awt.Color(240, 240, 240));
@@ -761,7 +765,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                if (!Admin.isLogin) {
+                    new Login().setVisible(true);
+                } else {
+                    new Main().setVisible(true);
+                }
             }
         });
     }
