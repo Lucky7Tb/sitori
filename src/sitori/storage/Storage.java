@@ -8,10 +8,12 @@ package sitori.storage;
 public class Storage {
     private int id;
     private String storageName;
+    private String updateAt;
 
-    public Storage(int id, String storageName) {
+    public Storage(int id, String storageName, String updateAt) {
         this.id = id;
         this.storageName = storageName;
+        this.updateAt = updateAt;
     }
 
     public int getId() {
@@ -20,5 +22,9 @@ public class Storage {
 
     public String getStorageName() {
         return storageName;
-    }    
+    }
+    
+    public String getUpdatedAt() {
+        return updateAt;
+    }
 }

@@ -24,9 +24,6 @@ public class StorageView extends javax.swing.JPanel {
         storageService = new StorageService();
         ResetBtn.setVisible(false);
         DeleteBtn.setVisible(false);
-    }
-    
-    public void initData() {
         getStorage();
     }
     
@@ -186,12 +183,12 @@ public class StorageView extends javax.swing.JPanel {
         String storageName = StorageField.getText();
         
         if(storageName.equals("")) {
-            JOptionPane.showMessageDialog(this, "All field are required", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Semua form harus diisi", "Error", JOptionPane.ERROR_MESSAGE);
         }else {
             if(storageId == -1) {
-                insertStorage(new Storage(0, storageName));
+                insertStorage(new Storage(0, storageName, ""));
             } else {
-                updateStorage(storageId, new Storage(0, storageName));
+                updateStorage(storageId, new Storage(0, storageName, ""));
             }
             
             StorageField.setText("");
@@ -210,6 +207,7 @@ public class StorageView extends javax.swing.JPanel {
     private void StorageTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StorageTableMouseClicked
         int index = StorageTable.getSelectedRow();
         Storage storage = listStorage.get(index);
+        storageId = storage.getId();
         StorageField.setText(storage.getStorageName());
         ResetBtn.setVisible(true);
         DeleteBtn.setVisible(true);

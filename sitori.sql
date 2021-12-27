@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2021 at 06:14 PM
+-- Generation Time: Dec 27, 2021 at 06:43 AM
 -- Server version: 10.6.4-MariaDB-log
 -- PHP Version: 7.4.24
 
@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'admin', '25f9e794323b453885f5181f1b624d0b');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `item`
 --
 
@@ -36,6 +55,17 @@ CREATE TABLE `item` (
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `item_name` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `item_category_id`, `item_storage_id`, `item_good_condition_ammount`, `created_at`, `updated_at`, `item_name`) VALUES
+(4, 2, 1, 0, '2021-12-19 16:19:53', '2021-12-19 16:19:53', 'Laptop'),
+(6, 2, 1, 0, '2021-12-19 16:37:50', '2021-12-19 16:37:50', 'Kipas'),
+(7, 2, 1, 0, '2021-12-20 03:49:47', '2021-12-20 03:49:47', 'Komputer'),
+(8, 2, 1, 0, '2021-12-20 03:52:07', '2021-12-20 03:52:07', 'Mouse'),
+(13, 2, 1, 0, '2021-12-20 08:33:28', '2021-12-20 08:39:35', 'Keyboardwdwdwd');
 
 -- --------------------------------------------------------
 
@@ -55,7 +85,8 @@ CREATE TABLE `item_category` (
 --
 
 INSERT INTO `item_category` (`id`, `item_category_name`, `created_at`, `updated_at`) VALUES
-(1, 'Elektronik', '2021-11-08 16:50:36', '2021-11-08 16:50:36');
+(2, 'Elektronik', '2021-12-19 15:33:15', '2021-12-19 15:33:16'),
+(3, 'Apa aja', '2021-12-19 15:33:15', '2021-12-19 15:33:16');
 
 -- --------------------------------------------------------
 
@@ -103,6 +134,14 @@ CREATE TABLE `last_activity` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `last_activity`
+--
+
+INSERT INTO `last_activity` (`id`, `item_id`, `ammount`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(6, 6, 12, 'ddwfw', 'BARANG_MASUK', '2021-12-20 11:39:38', '2021-12-20 11:39:39'),
+(7, 7, 424, 'fefef', 'BARANG_KELUAR', '2021-12-20 11:39:48', '2021-12-20 11:39:49');
+
 -- --------------------------------------------------------
 
 --
@@ -121,11 +160,18 @@ CREATE TABLE `storage` (
 --
 
 INSERT INTO `storage` (`id`, `storage_name`, `created_at`, `updated_at`) VALUES
-(1, 'Gudang 1', '2021-11-08 16:50:47', '2021-11-08 16:50:47');
+(1, 'Gudang dwdwdw', '2021-11-08 16:50:47', '2021-12-27 06:41:48'),
+(2, 'Gudang beihfi', '2021-12-27 06:28:50', '2021-12-27 06:41:26');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `item`
@@ -174,16 +220,22 @@ ALTER TABLE `storage`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `item_category`
 --
 ALTER TABLE `item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `item_in`
@@ -201,13 +253,13 @@ ALTER TABLE `item_out`
 -- AUTO_INCREMENT for table `last_activity`
 --
 ALTER TABLE `last_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

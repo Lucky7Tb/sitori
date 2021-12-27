@@ -12,11 +12,11 @@ public class StorageTableModel extends AbstractTableModel{
     private final List<Storage> storageList;
      
     private final String[] columnNames = new String[] {
-        "Tempat Penyimpanan"
+        "Tempat Penyimpanan", "Tgl Perubahan"
     };
     
     private final Class[] columnClass = new Class[] {
-        String.class
+        String.class, String.class
     };
     
     public StorageTableModel(List<Storage> storageList) {
@@ -52,6 +52,8 @@ public class StorageTableModel extends AbstractTableModel{
         switch(columnIndex) {
             case 0:
                 return row.getStorageName();
+            case 1:
+                return row.getUpdatedAt();
             default:
                 return null;
         }

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import sitori.base.Service;
 import sitori.db.DbService;
+import sitori.helper.DateHelper;
         
 /**
  *
@@ -24,8 +25,9 @@ public class StorageService extends Service<Storage> {
             while(result.next()) {
                 listStorage.add(
                     new Storage(
-                            result.getInt("id"),
-                            result.getString("storage_name")
+                        result.getInt("id"),
+                        result.getString("storage_name"),
+                        result.getString("updated_at")
                     )
                 );
             }
@@ -61,7 +63,8 @@ public class StorageService extends Service<Storage> {
             while(result.next()) {
                 return new Storage(
                     result.getInt("id"),
-                    result.getString("storage_name")
+                    result.getString("storage_name"),
+                    result.getString("updated_at")
                 );
             }
         } catch (SQLException e) {
@@ -125,8 +128,8 @@ public class StorageService extends Service<Storage> {
     @Override
     public void update(int id, Storage storage) {
         try {
-            String query = "UPDATE `storage` SET `storage_name` = '%s' WHERE `id` = %d";
-            query = String.format(query, storage.getStorageName(), id);
+            String query = "UPDATE `storage` SET `storage_name` = '%s', `updated_at` = '%s' WHERE `id` = %d";
+            query = String.format(query, storage.getStorageName(), DateHelper.generateTimeStamp(), id);
             boolean isError = DbService.query(query);
             
             if (!isError) {
@@ -159,7 +162,7 @@ public class StorageService extends Service<Storage> {
     @Override
     public void delete(int id) {
         try {
-          String query = "DELETE FROM  `storage` WHERE `id` = %d";
+          String query = "DELETE FROM `storage` WHERE `id` = %d";
             query = String.format(query, id);
             boolean isError = DbService.query(query);
             if (!isError) {
