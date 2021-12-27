@@ -3,6 +3,7 @@ package sitori.storage;
 /**
  *
  * @author lucky
+ * @author audy
  */
 public class Storage {
     private int id;
