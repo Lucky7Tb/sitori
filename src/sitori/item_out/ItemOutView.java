@@ -132,6 +132,7 @@ public class ItemOutView extends javax.swing.JPanel {
         ItemOutDescriptionField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
         ItemOutDescriptionField.setOpaque(false);
 
+        SaveBtn.setBackground(new java.awt.Color(240, 240, 240));
         SaveBtn.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         SaveBtn.setForeground(new java.awt.Color(42, 110, 244));
         SaveBtn.setText("Simpan");

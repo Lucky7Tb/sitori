@@ -137,6 +137,11 @@ public class StorageView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        StorageTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StorageTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(StorageTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -199,6 +204,15 @@ public class StorageView extends javax.swing.JPanel {
     private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
         deleteStorage(storageId);
     }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void StorageTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StorageTableMouseClicked
+        int index = StorageTable.getSelectedRow();
+        Storage storage = listStorage.get(index);
+        storageId = storage.getId();
+        StorageField.setText(storage.getStorageName());
+        ResetBtn.setVisible(true);
+        DeleteBtn.setVisible(true);
+    }//GEN-LAST:event_StorageTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

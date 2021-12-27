@@ -57,6 +57,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(800, 650));
         setPreferredSize(new java.awt.Dimension(800, 650));
 
+        categoryNameField.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         categoryNameField.setForeground(new java.awt.Color(51, 51, 51));
         categoryNameField.setToolTipText("");
         categoryNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
@@ -66,6 +67,9 @@ public class ItemCategoryView extends javax.swing.JPanel {
         save.setForeground(new java.awt.Color(42, 110, 244));
         save.setText("Save");
         save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        save.setMaximumSize(new java.awt.Dimension(45, 30));
+        save.setMinimumSize(new java.awt.Dimension(45, 30));
+        save.setPreferredSize(new java.awt.Dimension(45, 30));
         save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveMouseClicked(evt);
@@ -79,9 +83,12 @@ public class ItemCategoryView extends javax.swing.JPanel {
 
         reset.setBackground(new java.awt.Color(255, 255, 255));
         reset.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
-        reset.setForeground(new java.awt.Color(108, 117, 125));
+        reset.setForeground(new java.awt.Color(153, 153, 153));
         reset.setText("Reset");
         reset.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(108, 117, 125), 3, true));
+        reset.setMaximumSize(new java.awt.Dimension(45, 30));
+        reset.setMinimumSize(new java.awt.Dimension(45, 30));
+        reset.setPreferredSize(new java.awt.Dimension(45, 30));
         reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetActionPerformed(evt);
@@ -93,6 +100,9 @@ public class ItemCategoryView extends javax.swing.JPanel {
         delete.setForeground(new java.awt.Color(220, 53, 69));
         delete.setText("Delete");
         delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 53, 69), 3, true));
+        delete.setMaximumSize(new java.awt.Dimension(45, 30));
+        delete.setMinimumSize(new java.awt.Dimension(45, 30));
+        delete.setPreferredSize(new java.awt.Dimension(45, 30));
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteMouseClicked(evt);
@@ -136,9 +146,9 @@ public class ItemCategoryView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reset)
+                        .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delete))
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -154,17 +164,14 @@ public class ItemCategoryView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reset)
-                    .addComponent(delete))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {delete, reset, save});
-
     }// </editor-fold>//GEN-END:initComponents
     
     private void insertCategory(ItemCategory category) {
