@@ -2,6 +2,7 @@ package sitori.item;
 
 import sitori.db.DbService;
 import sitori.base.Service;
+import sitori.helper.DateHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -108,8 +109,8 @@ public class ItemService extends Service<Item> {
             if (!isError) {
                 JOptionPane.showMessageDialog(
                     null, 
-                    "Success insert item",
-                    "Success",
+                    "Sukses tambah barang",
+                    "Sukses",
                     JOptionPane.INFORMATION_MESSAGE
                 );
             } else {
@@ -133,12 +134,69 @@ public class ItemService extends Service<Item> {
     }
 
     @Override
-    public void update(int id, Item o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(int id, Item item) {
+        try {
+            String query = "UPDATE `item` SET `item_name` = '%s', `item_category_id` = %d, `item_storage_id` = %d, `updated_at` = '%s' WHERE `id` = %d";
+            query = String.format(query, item.getItemName(), item.getItemCategoryId(), item.getItemStorageId(), DateHelper.generateTimeStamp(), id);
+            boolean isError = DbService.query(query);
+            
+            if (!isError) {
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Sukses update barang",
+                    "Sukses",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Db error",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                null, 
+                "Internal Error",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        } finally {
+            DbService.closeConnection();
+        }
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+          String query = "DELETE FROM  `item` WHERE `id` = %d";
+            query = String.format(query, id);
+            boolean isError = DbService.query(query);
+            if (!isError) {
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Sukses hapus barang",
+                    "Sukses",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+               JOptionPane.showMessageDialog(
+                null, 
+                "Db error",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+               );
+            }   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                null, 
+                "Internal Error",
+                "Error",
+                JOptionPane.ERROR_MESSAGE
+            );
+        } finally {
+            DbService.closeConnection();
+        }
     }
 }

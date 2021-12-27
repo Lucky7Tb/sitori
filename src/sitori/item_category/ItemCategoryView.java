@@ -1,19 +1,39 @@
 package sitori.item_category;
 
-import javax.swing.table.DefaultTableModel;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lucky
+ * @author gema
  */
 public class ItemCategoryView extends javax.swing.JPanel {
-    
+    private int categoryId = -1; 
+    private final ItemCategoryService itemCategoryService;
+    private ItemCategoryTableModel itemCategoryTableModel;
+    private ArrayList<ItemCategory> listItemCategory;
     /**
      * Creates new form ItemCategoryView
      */
     public ItemCategoryView() {
+        
         initComponents();
         this.setSize(800, 650);
+        reset.setVisible(false);
+        delete.setVisible(false);
+        
+        itemCategoryService = new ItemCategoryService();
+    }
+    
+    public void initData() {
+        getItemCategory();
+    }
+    
+    private void getItemCategory() {
+        listItemCategory = itemCategoryService.getAll();
+        itemCategoryTableModel = new ItemCategoryTableModel(listItemCategory);
+        CategoryTable.setModel(itemCategoryTableModel);
     }
 
     /**
@@ -26,26 +46,31 @@ public class ItemCategoryView extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        kategori = new javax.swing.JTextField();
+        categoryNameField = new javax.swing.JTextField();
         save = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbKategori = new javax.swing.JTable();
+        CategoryTable = new javax.swing.JTable();
 
         jLabel1.setBackground(new java.awt.Color(42, 110, 244));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(42, 110, 244));
         jLabel1.setText("Kategori Barang");
 
-        kategori.setForeground(new java.awt.Color(51, 51, 51));
-        kategori.setToolTipText("");
-        kategori.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        categoryNameField.setForeground(new java.awt.Color(51, 51, 51));
+        categoryNameField.setToolTipText("");
+        categoryNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
 
         save.setBackground(new java.awt.Color(255, 255, 255));
         save.setForeground(new java.awt.Color(42, 110, 244));
         save.setText("Save");
         save.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        save.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveMouseClicked(evt);
+            }
+        });
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
@@ -66,9 +91,14 @@ public class ItemCategoryView extends javax.swing.JPanel {
         delete.setForeground(new java.awt.Color(220, 53, 69));
         delete.setText("Delete");
         delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(220, 53, 69), 3, true));
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+        });
 
-        tbKategori.setForeground(new java.awt.Color(204, 204, 204));
-        tbKategori.setModel(new javax.swing.table.DefaultTableModel(
+        CategoryTable.setBackground(new java.awt.Color(240, 240, 240));
+        CategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -79,9 +109,14 @@ public class ItemCategoryView extends javax.swing.JPanel {
                 "ID", "Kategori Barang"
             }
         ));
-        tbKategori.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tbKategori.setGridColor(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(tbKategori);
+        CategoryTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        CategoryTable.setGridColor(new java.awt.Color(204, 204, 204));
+        CategoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CategoryTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(CategoryTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,7 +133,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
                         .addComponent(delete))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -110,7 +145,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,23 +159,83 @@ public class ItemCategoryView extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {delete, reset, save});
 
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void insertCategory(ItemCategory category) {
+        itemCategoryService.insert(category);
+        getItemCategory();
+    }
+    
+    private void updateCategory(int id, ItemCategory category) {
+        itemCategoryService.update(id, category);
+        clearForm();
+        getItemCategory();
+    }
 
+    private void deleteCategory(int id) {
+        itemCategoryService.delete(id);
+        clearForm();
+        getItemCategory();
+    }
+    
+    private void clearForm() {
+        categoryNameField.setText("");
+        CategoryTable.clearSelection();
+        reset.setVisible(false);
+        delete.setVisible(false);
+    }
+    
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        kategori.setText("");
+        clearForm();
+        categoryId = -1;
     }//GEN-LAST:event_resetActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         
     }//GEN-LAST:event_saveActionPerformed
 
+    private void CategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategoryTableMouseClicked
+        int index = CategoryTable.getSelectedRow();
+        ItemCategory category = listItemCategory.get(index);
+        categoryId = category.getId();
+        categoryNameField.setText(category.getItemCategoryName());
+        
+        reset.setVisible(true);
+        delete.setVisible(true);
+    }//GEN-LAST:event_CategoryTableMouseClicked
+
+    private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
+        String categoryName = categoryNameField.getText();
+        
+        if (categoryName.equals("")) {
+            JOptionPane.showMessageDialog(
+                this, 
+                "All field are required", 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE
+            );
+        } else {
+            if (categoryId == -1) {
+                insertCategory(new ItemCategory(0,categoryName));
+            } else {
+                updateCategory(categoryId, new ItemCategory(0,categoryName));
+            }
+
+            categoryNameField.setText("");
+        }
+    }//GEN-LAST:event_saveMouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        deleteCategory(categoryId);
+    }//GEN-LAST:event_deleteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable CategoryTable;
+    private javax.swing.JTextField categoryNameField;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kategori;
     private javax.swing.JButton reset;
     private javax.swing.JButton save;
-    private javax.swing.JTable tbKategori;
     // End of variables declaration//GEN-END:variables
 }

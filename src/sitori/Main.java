@@ -15,6 +15,7 @@ import java.awt.Font;
  * @author lucky
  */
 public class Main extends javax.swing.JFrame {
+    MainView mainView;
     StorageView storageView;
     ItemCategoryView itemCategoryView;
     ItemView itemView;
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/sitori/resource/sitori-128.png"));
         this.setIconImage(icon.getImage());
                 
+        mainView = new MainView();
         storageView = new StorageView();
         itemCategoryView = new ItemCategoryView();
         itemView = new ItemView();
@@ -39,6 +41,7 @@ public class Main extends javax.swing.JFrame {
         itemOutView = new ItemOutView();
         lastActivityView = new LastActivityView();
         
+        ContentPanel.add(mainView);
         ContentPanel.add(storageView);
         ContentPanel.add(itemCategoryView);
         ContentPanel.add(itemView);
@@ -46,6 +49,7 @@ public class Main extends javax.swing.JFrame {
         ContentPanel.add(itemOutView);
         ContentPanel.add(lastActivityView);
         
+        mainView.setVisible(true);
         storageView.setVisible(false);
         itemCategoryView.setVisible(false);
         itemView.setVisible(false);
@@ -347,6 +351,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sitori/resource/logo.png"))); // NOI18N
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout LogoContainerLayout = new javax.swing.GroupLayout(LogoContainer);
         LogoContainer.setLayout(LogoContainerLayout);
@@ -474,6 +484,7 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(false);
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
+        mainView.setVisible(false);
     }//GEN-LAST:event_StorageLabelMouseClicked
 
     private void ItemCategoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemCategoryLabelMouseClicked
@@ -513,6 +524,9 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(false);
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
+        mainView.setVisible(false);
+        
+        itemCategoryView.initData();
     }//GEN-LAST:event_ItemCategoryLabelMouseClicked
 
     private void ItemLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemLabelMouseClicked
@@ -552,6 +566,9 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(false);
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
+        mainView.setVisible(false);
+
+        itemView.initData();
     }//GEN-LAST:event_ItemLabelMouseClicked
 
     private void ItemInLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemInLabelMouseClicked
@@ -591,6 +608,9 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(true);
         itemOutView.setVisible(false);
         lastActivityView.setVisible(false);
+        mainView.setVisible(false);
+        
+        itemInView.initData();
     }//GEN-LAST:event_ItemInLabelMouseClicked
 
     private void ItemOutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemOutLabelMouseClicked
@@ -630,6 +650,9 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(false);
         itemOutView.setVisible(true);
         lastActivityView.setVisible(false);
+        mainView.setVisible(false);
+
+        itemOutView.initData();
     }//GEN-LAST:event_ItemOutLabelMouseClicked
 
     private void LastActivityLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LastActivityLabelMouseClicked
@@ -669,7 +692,48 @@ public class Main extends javax.swing.JFrame {
         itemInView.setVisible(false);
         itemOutView.setVisible(false);
         lastActivityView.setVisible(true);
+        mainView.setVisible(false);
     }//GEN-LAST:event_LastActivityLabelMouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        StorageLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        StorageLabel.setForeground(new Color(240,240,240));
+        StorageLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/home.png")));
+        StorageMenuBtn.setBackground(new Color(42,110,244));
+        
+        ItemCategoryLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        ItemCategoryLabel.setForeground(new Color(240,240,240));
+        ItemCategoryLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/folder.png")));
+        ItemCategoryMenuBtn.setBackground(new Color(42,110,244));
+        
+        ItemLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        ItemLabel.setForeground(new Color(240,240,240));
+        ItemLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/file.png")));
+        ItemMenuBtn.setBackground(new Color(42,110,244));
+        
+        ItemInLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        ItemInLabel.setForeground(new Color(240,240,240));
+        ItemInLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/file-plus.png")));
+        ItemInMenuBtn.setBackground(new Color(42,110,244));
+        
+        ItemOutLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        ItemOutLabel.setForeground(new Color(240,240,240));
+        ItemOutLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/file-minus.png")));
+        ItemOutMenuBtn.setBackground(new Color(42,110,244));
+        
+        LastActivityLabel.setFont(new Font("Noto Sans", Font.PLAIN, 17));
+        LastActivityLabel.setForeground(new Color(240,240,240));
+        LastActivityLabel.setIcon(new ImageIcon(getClass().getResource("/sitori/resource/clock.png")));
+        LastActivityMenuBtn.setBackground(new Color(42,110,244));
+        
+        storageView.setVisible(false);
+        itemCategoryView.setVisible(false);
+        itemView.setVisible(false);
+        itemInView.setVisible(false);
+        itemOutView.setVisible(false);
+        lastActivityView.setVisible(false);
+        mainView.setVisible(true);
+    }//GEN-LAST:event_jLabel16MouseClicked
 
     /**
      * @param args the command line arguments

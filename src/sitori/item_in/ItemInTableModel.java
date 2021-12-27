@@ -1,25 +1,29 @@
-package sitori.item;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package sitori.item_in;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
  * @author lucky
+ * @author gema
  */
-public class ItemTableModel extends AbstractTableModel{
-    private final List<Item> itemList;
+public class ItemInTableModel extends AbstractTableModel{
+    private final List<ItemIn> itemInList;
      
     private final String[] columnNames = new String[] {
-        "Nama barang", "Kategori", "Tempat penyimpanan", "Stok barang", "Tgl perubahan"
+        "Nama barang", "Jumlah barang", "Deskripsi", "Tgl perubahan"
     };
     
     private final Class[] columnClass = new Class[] {
-        String.class, String.class, String.class, String.class, Integer.class, String.class
+        Integer.class, String.class, Integer.class, String.class, String.class
     };
     
-    public ItemTableModel(List<Item> itemList) {
-        this.itemList = itemList;
+    public ItemInTableModel(List<ItemIn> itemInList) {
+        this.itemInList = itemInList;
     }
     
     @Override
@@ -36,7 +40,7 @@ public class ItemTableModel extends AbstractTableModel{
 
     @Override
     public int getRowCount() {
-        return this.itemList.size();
+        return this.itemInList.size();
     }
 
     @Override
@@ -46,22 +50,19 @@ public class ItemTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Item row = itemList.get(rowIndex);
+        ItemIn row = itemInList.get(rowIndex);
         
         switch(columnIndex) {
             case 0:
                 return row.getItemName();
             case 1:
-                return row.getItemCategoryName();
+                return row.getItemInAmmount();
             case 2:
-                return row.getItemStorageName();
+                return row.getDescription();
             case 3:
-                return row.getItemGoodConditionAmmount();
-            case 4:
                 return row.getUpdatedAt();
             default:
                 return null;
         }
     }
-    
 }

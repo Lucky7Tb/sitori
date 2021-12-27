@@ -33,7 +33,7 @@
                       <Component id="ItemOutAmmountField" alignment="0" max="32767" attributes="0"/>
                       <Component id="ItemComboBox" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="BtnSave" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Component id="SaveBtn" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
@@ -55,7 +55,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ItemOutDescriptionField" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="BtnSave" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="SaveBtn" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="279" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnSave">
+    <Component class="javax.swing.JButton" name="SaveBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Sans" size="17" style="0"/>
@@ -261,7 +261,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnSaveMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SaveBtnMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

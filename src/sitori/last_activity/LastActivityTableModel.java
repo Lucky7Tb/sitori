@@ -1,4 +1,4 @@
-package sitori.item;
+package sitori.last_activity;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -7,19 +7,19 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author lucky
  */
-public class ItemTableModel extends AbstractTableModel{
-    private final List<Item> itemList;
+public class LastActivityTableModel extends AbstractTableModel{
+    private final List<LastActivity> listLastActivity;
      
     private final String[] columnNames = new String[] {
-        "Nama barang", "Kategori", "Tempat penyimpanan", "Stok barang", "Tgl perubahan"
+        "Nama barang", "Jumlah barang", "Status", "Deskripsi", "Tanggal"
     };
     
     private final Class[] columnClass = new Class[] {
-        String.class, String.class, String.class, String.class, Integer.class, String.class
+        String.class, Integer.class, String.class, String.class, String.class
     };
     
-    public ItemTableModel(List<Item> itemList) {
-        this.itemList = itemList;
+    public LastActivityTableModel(List<LastActivity> listLastActivity) {
+        this.listLastActivity = listLastActivity;
     }
     
     @Override
@@ -36,7 +36,7 @@ public class ItemTableModel extends AbstractTableModel{
 
     @Override
     public int getRowCount() {
-        return this.itemList.size();
+        return this.listLastActivity.size();
     }
 
     @Override
@@ -46,19 +46,19 @@ public class ItemTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Item row = itemList.get(rowIndex);
+        LastActivity row = listLastActivity.get(rowIndex);
         
         switch(columnIndex) {
             case 0:
                 return row.getItemName();
             case 1:
-                return row.getItemCategoryName();
+                return row.getAmmount();
             case 2:
-                return row.getItemStorageName();
+                return row.getStatus();
             case 3:
-                return row.getItemGoodConditionAmmount();
+                return row.getDescription();
             case 4:
-                return row.getUpdatedAt();
+                return row.getCreatedAt();
             default:
                 return null;
         }

@@ -28,6 +28,10 @@ public class ItemOutView extends javax.swing.JPanel {
         this.setSize(800, 650);
         itemOutService = new ItemOutService();
         itemService = new ItemService();
+    }
+    
+    public void initData() {
+        ItemComboBox.removeAllItems();
         getItemOut();
         getItem();
     }
@@ -68,7 +72,7 @@ public class ItemOutView extends javax.swing.JPanel {
         ItemOutAmmountField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         ItemOutDescriptionField = new javax.swing.JTextField();
-        BtnSave = new javax.swing.JButton();
+        SaveBtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 650));
 
@@ -125,15 +129,16 @@ public class ItemOutView extends javax.swing.JPanel {
         ItemOutDescriptionField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
         ItemOutDescriptionField.setOpaque(false);
 
-        BtnSave.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
-        BtnSave.setForeground(new java.awt.Color(42, 110, 244));
-        BtnSave.setText("Simpan");
-        BtnSave.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
-        BtnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BtnSave.setMargin(new java.awt.Insets(100, 100, 100, 100));
-        BtnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+        SaveBtn.setBackground(new java.awt.Color(240, 240, 240));
+        SaveBtn.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        SaveBtn.setForeground(new java.awt.Color(42, 110, 244));
+        SaveBtn.setText("Simpan");
+        SaveBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(42, 110, 244), 3, true));
+        SaveBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SaveBtn.setMargin(new java.awt.Insets(100, 100, 100, 100));
+        SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnSaveMouseClicked(evt);
+                SaveBtnMouseClicked(evt);
             }
         });
 
@@ -152,8 +157,8 @@ public class ItemOutView extends javax.swing.JPanel {
                         .addComponent(ItemOutDescriptionField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                         .addComponent(ItemOutAmmountField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ItemComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +176,14 @@ public class ItemOutView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ItemOutDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSaveMouseClicked
+    private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
         Item item = listItem.get(ItemComboBox.getSelectedIndex());
         String itemOut = ItemOutAmmountField.getText();
         String itemOutDescription = ItemOutDescriptionField.getText();
@@ -196,14 +201,14 @@ public class ItemOutView extends javax.swing.JPanel {
             ItemOutAmmountField.setText("");
             ItemOutDescriptionField.setText("");
         }
-    }//GEN-LAST:event_BtnSaveMouseClicked
+    }//GEN-LAST:event_SaveBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnSave;
     private javax.swing.JComboBox<String> ItemComboBox;
     private javax.swing.JTextField ItemOutAmmountField;
     private javax.swing.JTextField ItemOutDescriptionField;
+    private javax.swing.JButton SaveBtn;
     private javax.swing.JTable itemOutTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

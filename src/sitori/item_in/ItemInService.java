@@ -1,4 +1,8 @@
-package sitori.item_out;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package sitori.item_in;
 
 import sitori.item.Item;
 import sitori.db.DbService;
@@ -9,34 +13,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
 /**
- *
  * @author lucky
+ * @author gema
  */
-public class ItemOutService extends Service<ItemOut> {
+public class ItemInService extends Service<ItemIn> {
     @Override
-    public ArrayList<ItemOut> getAll() {
+    public ArrayList<ItemIn> getAll() {
         try {
-            ArrayList<ItemOut> listItemOut = new ArrayList<>();
+            ArrayList<ItemIn> listItemIn = new ArrayList<>();
         
             ResultSet result = DbService.get(
-                "SELECT item_out.*, `item`.`item_name`"
-                + "FROM `item_out`"
-                + "JOIN `item` ON `item`.`id` = `item_out`.`item_id`"
+                "SELECT item_in.*, `item`.`item_name`"
+                + "FROM `item_in`"
+                + "JOIN `item` ON `item`.`id` = `item_in`.`item_id`"
             );
             while(result.next()) {
-                listItemOut.add(new ItemOut(
+                listItemIn.add(new ItemIn(
                     result.getInt("id"),
                     result.getInt("item_id"),
                     result.getString("item_name"),
-                    result.getInt("item_out_ammount"),
+                    result.getInt("item_in_ammount"),
                     result.getString("description"),
                     result.getString("created_at"),
                     result.getString("updated_at")
                 ));
             }
             
-            return listItemOut;
+            return listItemIn;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(
                 null, 
@@ -59,43 +64,36 @@ public class ItemOutService extends Service<ItemOut> {
     }
 
     @Override
-    public ItemOut getOne(int id) {
+    public ItemIn getOne(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
-    public void insert(ItemOut itemOut) {
+    public void insert(ItemIn itemIn) {
         try {
             ItemService itemService = new ItemService();
-            Item item = itemService.getOne(itemOut.getItemId());
+            Item item = itemService.getOne(itemIn.getItemId());
             
-            if (item.getItemGoodConditionAmmount() < itemOut.getItemOutAmmount()) {
-                JOptionPane.showMessageDialog(
-                    null, 
-                    "Stok barang kurang",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE
-                );
-            } else {
+             
                 String query = "INSERT INTO "
-                    + "`item_out` (`item_id`, `item_out_ammount`, `description`) "
+                    + "`item_in` (`item_id`, `item_in_ammount`, `description`) "
                     + "VALUES ('%d', '%d', '%s')";
                 query = String.format(
                     query, 
-                    itemOut.getItemId(),
-                    itemOut.getItemOutAmmount(), 
-                    itemOut.getDescription()
+                    itemIn.getItemId(),
+                    itemIn.getItemInAmmount(), 
+                    itemIn.getDescription()
                 );
                 boolean isError = DbService.query(query);
                 if (!isError) {
                     query = "INSERT INTO "
                             + "`last_activity` (`item_id`, `ammount`, `description`, `status`)"
-                            + "VALUE ('%d', '%d', '%s', 'BARANG_KELUAR')";
+                            + "VALUE ('%d', '%d', '%s', 'BARANG_MASUK')";
                     query = String.format(
                         query, 
-                        itemOut.getItemId(), 
-                        itemOut.getItemOutAmmount(),
-                        itemOut.getDescription()
+                        itemIn.getItemId(), 
+                        itemIn.getItemInAmmount(),
+                        itemIn.getDescription()
                     );
                     isError = DbService.query(query);
                     if (isError) {
@@ -107,11 +105,11 @@ public class ItemOutService extends Service<ItemOut> {
                         );
                         return;
                     } else {
-                        query = "UPDATE `item` SET item_good_condition_ammount = item_good_condition_ammount - %d WHERE id = %d";
+                        query = "UPDATE `item` SET item_good_condition_ammount = item_good_condition_ammount + %d WHERE id = %d";
                         query = String.format(
                             query, 
-                            itemOut.getItemOutAmmount(), 
-                            itemOut.getItemId()
+                            itemIn.getItemInAmmount(), 
+                            itemIn.getItemId()
                         );
                         isError = DbService.query(query);
                         if (isError) {
@@ -132,7 +130,7 @@ public class ItemOutService extends Service<ItemOut> {
                         }
                     }
                 }
-            }
+             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                 null, 
@@ -146,7 +144,7 @@ public class ItemOutService extends Service<ItemOut> {
     }
 
     @Override
-    public void update(int id, ItemOut itemOut) {
+    public void update(int id, ItemIn itemIn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
