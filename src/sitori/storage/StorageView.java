@@ -126,6 +126,8 @@ public class StorageView extends javax.swing.JPanel {
         });
 
         StorageTable.setAutoCreateRowSorter(true);
+        StorageTable.setBackground(new java.awt.Color(240, 240, 240));
+        StorageTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         StorageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

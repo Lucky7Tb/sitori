@@ -81,6 +81,8 @@ public class LastActivityView extends javax.swing.JPanel {
         });
 
         LastActivityTable.setAutoCreateRowSorter(true);
+        LastActivityTable.setBackground(new java.awt.Color(240, 240, 240));
+        LastActivityTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         LastActivityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

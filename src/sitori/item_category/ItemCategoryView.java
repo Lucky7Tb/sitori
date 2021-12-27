@@ -111,6 +111,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
 
         CategoryTable.setAutoCreateRowSorter(true);
         CategoryTable.setBackground(new java.awt.Color(240, 240, 240));
+        CategoryTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         CategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},

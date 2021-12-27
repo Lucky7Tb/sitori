@@ -147,7 +147,7 @@ public class ItemView extends javax.swing.JPanel {
 
         ItemTable.setAutoCreateRowSorter(true);
         ItemTable.setBackground(new java.awt.Color(240, 240, 240));
-        ItemTable.setFont(new java.awt.Font("Noto Sans", 0, 15)); // NOI18N
+        ItemTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         ItemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

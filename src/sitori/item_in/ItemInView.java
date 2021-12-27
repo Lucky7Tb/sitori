@@ -127,6 +127,7 @@ public class ItemInView extends javax.swing.JPanel {
         });
 
         itemInTable.setAutoCreateRowSorter(true);
+        itemInTable.setBackground(new java.awt.Color(240, 240, 240));
         itemInTable.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         itemInTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
