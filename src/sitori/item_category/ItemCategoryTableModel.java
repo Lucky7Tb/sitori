@@ -15,7 +15,7 @@ public class ItemCategoryTableModel extends AbstractTableModel {
     private final List<ItemCategory> categoryList;
     
     private final String[] columnNames = new String[] {
-        "Kategori Barang", "Tgl berubahan"
+        "Kategori Barang", "Tgl perubahan"
     };
     
     private final Class[] columnClass = new Class[] {
