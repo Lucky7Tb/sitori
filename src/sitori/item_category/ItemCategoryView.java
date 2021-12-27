@@ -184,6 +184,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         itemCategoryService.update(id, category);
         clearForm();
         getItemCategory();
+        categoryId = -1;
     }
 
     private void deleteCategory(int id) {
