@@ -190,6 +190,7 @@ public class ItemCategoryView extends javax.swing.JPanel {
         itemCategoryService.delete(id);
         clearForm();
         getItemCategory();
+        categoryId = -1;
     }
     
     private void clearForm() {

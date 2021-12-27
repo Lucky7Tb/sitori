@@ -48,6 +48,7 @@ public class StorageView extends javax.swing.JPanel {
         storageService.delete(id);
         clearForm();
         getStorage();
+        storageId = -1;
     }
     
     private void clearForm() {

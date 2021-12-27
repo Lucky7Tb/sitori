@@ -79,6 +79,7 @@ public class ItemView extends javax.swing.JPanel {
         itemService.delete(id);
         clearForm();
         getItem();
+        itemId = -1;
     }
     
     private void clearForm() {
