@@ -88,6 +88,8 @@ public class ItemInView extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        setBackground(new java.awt.Color(240, 240, 240));
+
         jLabel1.setBackground(new java.awt.Color(42, 110, 244));
         jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(42, 110, 244));
