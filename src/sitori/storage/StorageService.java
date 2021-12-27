@@ -168,7 +168,7 @@ public class StorageService extends Service<Storage> {
             if (!isError) {
                 JOptionPane.showMessageDialog(
                     null, 
-                    "Sukses hapus barang",
+                    "Sukses hapus tempat penyimpanan",
                     "Sukses",
                     JOptionPane.INFORMATION_MESSAGE
                 );
